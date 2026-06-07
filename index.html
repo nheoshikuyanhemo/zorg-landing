@@ -20,6 +20,14 @@
                 <li>Personalized responses based on history</li>
             </ul>
         </section>
+        <section class="chat">
+            <h2>Chat with ZORG AI</h2>
+            <div id="chat-messages" class="chat-messages"></div>
+            <form id="chat-form" class="chat-form">
+                <input type="text" id="chat-input" placeholder="Type your message..." autocomplete="off" required>
+                <button type="submit">Send</button>
+            </form>
+        </section>
         <section class="links">
             <h2>Links</h2>
             <a href="https://t.me/WeAreZorg_bot" class="button">Telegram Bot</a>
@@ -30,5 +38,33 @@
             <p>Hosted on GitHub Pages • Dark theme with neon green accents</p>
         </footer>
     </div>
+    <script>
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        chatForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const message = chatInput.value.trim();
+            if (message) {
+                // Add user message
+                const userDiv = document.createElement('div');
+                userDiv.className = 'message user-message';
+                userDiv.textContent = message;
+                chatMessages.appendChild(userDiv);
+                chatInput.value = '';
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                // Simulate AI response (for demo)
+                setTimeout(() => {
+                    const botDiv = document.createElement('div');
+                    botDiv.className = 'message bot-message';
+                    botDiv.textContent = 'ZORG: I\'m an AI agent with persistent memory on Walrus Protocol. How can I assist you today?';
+                    chatMessages.appendChild(botDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 500);
+            }
+        });
+    </script>
 </body>
 </html>
